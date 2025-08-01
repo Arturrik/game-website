@@ -1,0 +1,252 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    touch-action: manipulation;
+    position: relative;
+}
+
+.background-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    aspect-ratio: 550/700;
+    z-index: 2;
+}
+
+#game-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: rgba(0, 0, 0, 0.7);
+    border: 4px solid #3366ff;
+    box-shadow: 0 0 20px #3366ff;
+}
+
+#ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 20px;
+    text-shadow: 0 0 5px #3366ff;
+}
+
+#start-screen, #game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+#game-over {
+    display: none;
+    color: #ff3366;
+}
+
+h1 {
+    color: #3366ff;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #3366ff;
+}
+
+button {
+    background: #3366ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #3366ff;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #4488ff;
+    transform: scale(1.05);
+}
+
+
+#mobile-controls {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    gap: 40px;
+    padding: 10px;
+    z-index: 100;
+}
+
+.control-btn {
+    background: #3366ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px #3366ff;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.control-btn:active {
+    background: #2255dd;
+    transform: scale(0.95);
+}
+
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    animation: twinkle 3s infinite alternate;
+}
+
+.spaceship {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fly 10s linear infinite;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(var(--end-pos-x), var(--end-pos-y)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    #mobile-controls {
+        display: flex;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    button {
+        font-size: 16px;
+    }
+    
+    #ui {
+        font-size: 16px;
+    }
+}
+.space-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.space-star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite alternate;
+}
+
+.space-spaceship {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    animation: space-fly 15s linear infinite;
+}
+
+.space-spaceship-1 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><polygon points="20,5 5,35 35,35" fill="%23f1c40f"/><rect x="18" y="25" width="4" height="10" fill="%23e74c3c"/></svg>');
+}
+
+.space-spaceship-2 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect x="10" y="15" width="20" height="10" fill="%233498db"/><polygon points="10,15 20,5 30,15" fill="%233498db"/><rect x="18" y="25" width="4" height="10" fill="%23e74c3c"/></svg>');
+}
+
+.space-spaceship-3 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect x="15" y="10" width="10" height="20" fill="%232ecc71"/><polygon points="15,10 5,20 15,30" fill="%232ecc71"/><polygon points="25,10 35,20 25,30" fill="%232ecc71"/><rect x="18" y="30" width="4" height="10" fill="%23e74c3c"/></svg>');
+}
+
+@keyframes space-fly {
+    0% {
+        transform: translateX(var(--start-x)) translateY(var(--start-y)) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(var(--end-x)) translateY(var(--end-y)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
